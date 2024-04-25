@@ -6,9 +6,6 @@ ENV ANDROID_HOME=$HOME/androidsdk \
 ENV PATH="$HOME/flutter/bin:$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$PATH"
 
 # Install Open JDK for android and other dependencies
-USER root
-RUN install-packages openjdk-8-jdk -y \
-    && update-java-alternatives --set java-1.8.0-openjdk-amd64
 
 # Make some changes for our vnc client and flutter chrome
 # RUN sed -i 's|resize=scale|resize=remote|g' /opt/novnc/index.html \
