@@ -5,4 +5,4 @@ ENV ANDROID_HOME=$HOME/androidsdk \
     QTWEBENGINE_DISABLE_SANDBOX=1
 ENV PATH="$HOME/flutter/bin:$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$PATH"
 
-ENV PATH="/workspace/flutter/bin:$PATH"
+#ENV PATH="/workspace/flutter/bin:$PATH"
