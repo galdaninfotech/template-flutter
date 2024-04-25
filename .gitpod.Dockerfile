@@ -6,6 +6,13 @@ ENV ANDROID_HOME=$HOME/androidsdk \
 ENV PATH="$HOME/flutter/bin:$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$PATH"
 
 # Install Open JDK for android and other dependencies
+USER root
+RUN install-packages openjdk-8-jdk -y \
+        libgtk-3-dev \
+        libnss3-dev \
+        fonts-noto \
+        fonts-noto-cjk \
+    && update-java-alternatives --set java-1.8.0-openjdk-amd64
 
 # Make some changes for our vnc client and flutter chrome
 # RUN sed -i 's|resize=scale|resize=remote|g' /opt/novnc/index.html \
@@ -28,3 +35,11 @@ RUN wget -q "https://storage.googleapis.com/flutter_infra_release/releases/stabl
     && flutter config --android-sdk $ANDROID_HOME \
     && yes | flutter doctor --android-licenses \
     && flutter doctor
+
+# Insall VSCode
+USER gitpod
+RUN sudo apt update \
+    && sudo apt install software-properties-common apt-transport-https wget -y \
+    && wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add - \
+    && sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" \
+    && sudo apt install code
